@@ -1,0 +1,81 @@
+<html>
+   <head>
+    
+    <link rel="stylesheet" href="styles/index.css">
+
+</head>
+
+
+            <body>
+                    <div class="trafficBox">
+                        <div id="red" class="trafficLight" onclick="handleClick('red')"></div>
+                        <div id="yellow" class="trafficLight" onclick="handleClick('yellow')"></div>
+                        <div id="green" class="trafficLight" onclick="handleClick('green')"></div>
+                    </div>
+
+            </body>
+
+            <script>
+                function handleClick(color) {
+                    var red = document.getElementById("red");
+                    var yellow = document.getElementById("yellow");
+                    var green = document.getElementById("green");
+
+                    
+                 if (color === "red" && red.style.backgroundColor !== "red") {
+
+                setTimeout(()=>(red.style.backgroundColor = 'red'), 1000);
+                yellow.style.backgroundColor = "yellow";
+                setTimeout(()=>(yellow.style.backgroundColor = 'black'), 1000);
+                green.style.backgroundColor = "black";
+                yellow.classList.remove('blink'); 
+            } 
+            else if(color==='red' && red.style.backgroundColor === "red"){
+                if (red.style.backgroundColor === "red") {
+                    red.style.backgroundColor = "red";
+                    yellow.style.backgroundColor = "black";
+
+                        }
+            }
+            else if (color === "yellow") {
+                yellow.style.backgroundColor = "yellow";
+                red.style.backgroundColor = "black";
+                green.style.backgroundColor = "black";
+                yellow.classList.add('blink');
+
+                if (green.style.backgroundColor === "green" && red.style.backgroundColor === "red") {
+                    red.style.backgroundColor = "black";
+                    yellow.style.backgroundColor = "black";
+                    green.style.backgroundColor = "black";
+                    yellow.classList.remove('blink');
+
+
+                }
+            } 
+            else if (color === "green" && green.style.backgroundColor === "green") {
+                    green.style.backgroundColor = "green";
+                    yellow.style.backgroundColor = "black";
+                    setTimeout(()=>(yellow.style.backgroundColor = 'black'), 1000);
+                    setTimeout(()=>(green.style.backgroundColor = 'green'), 1000);
+                    
+                }
+                else if (color === "green" && green.style.backgroundColor !== "green") {
+                    setTimeout(()=>(green.style.backgroundColor = 'green'), 1000);
+                    yellow.style.backgroundColor = "yellow";
+                    setTimeout(()=>(yellow.style.backgroundColor = 'black'), 1000);
+
+                    red.style.backgroundColor = "black";
+                    yellow.classList.remove('blink'); 
+                }
+            }
+            </script>
+            </html>
+</script>
+</html>
+
+
+
+
+
+
+

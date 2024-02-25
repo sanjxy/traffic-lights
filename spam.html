@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Traffic Light</title>
+<style>
+  .traffic-light {
+    width: 300px;
+    background-color: black;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 50px auto;
+    display: flex; 
+    justify-content: space-between;
+  }
+  .light {
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+    border-radius: 50%;
+    transition: background-color 0.5s;
+  }
+  .red, .yellow, .green {
+    cursor: pointer;
+  }
+  .red.on {
+    background-color: red;
+  }
+  .yellow.on {
+    background-color: yellow;
+  }
+  .green.on {
+    background-color: green;
+  }
+</style>
+</head>
+<body>
+
+<div class="traffic-light">
+  <div id="red" class="light red on" onclick="keepRed()"></div>
+  <div id="yellow" class="light yellow" onclick="blinkYellow()"></div>
+  <div id="green" class="light green" onclick="goGreen()"></div>
+</div>
+
+<script>
+  let blinkingInterval;
+
+  function turnOffAll() {
+    document.getElementById('red').classList.remove('on');
+    document.getElementById('yellow').classList.remove('on');
+    document.getElementById('green').classList.remove('on');
+    clearInterval(blinkingInterval);
+  }
+
+  function keepRed() {
+  if (document.getElementById('green').classList.contains('on')) {
+    transitionToRed();
+  } else {
+    turnOffAll();
+    document.getElementById('red').classList.add('on');
+  }
+}
+
+  function blinkYellow() {
+    turnOffAll();
+    blinkingInterval = setInterval(() => {
+      document.getElementById('yellow').classList.toggle('on');
+    }, 1000);
+  }
+
+  
+
+  function goGreen() {
+    turnOffAll();
+    document.getElementById('yellow').classList.add('on');
+    setTimeout(() => {
+      document.getElementById('yellow').classList.remove('on');
+      document.getElementById('green').classList.add('on');
+    }, 2000);
+  }
+
+  function transitionToRed() {
+  turnOffAll();
+  document.getElementById('yellow').classList.add('on');
+  setTimeout(() => {
+    document.getElementById('yellow').classList.remove('on');
+    document.getElementById('red').classList.add('on');
+  }, 2000);
+}
+
+</script>
+
+</body>
+</html>
